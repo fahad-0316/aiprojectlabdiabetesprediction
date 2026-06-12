@@ -5,7 +5,6 @@ import os
 
 app = Flask(__name__)
 
-# Load model and scaler safely (allow app to start even if files are missing)
 model = None
 scaler = None
 if os.path.exists('model.pkl') and os.path.exists('scaler.pkl'):
