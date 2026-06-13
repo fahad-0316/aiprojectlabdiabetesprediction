@@ -10,80 +10,89 @@
 </head>
 <body>
     <div class="container">
-        <div class="header-row">
-            <div>
+        <header class="hero">
+            <div class="hero-text">
                 <h1>🩺 Diabetes Prediction System</h1>
-                <p class="subtitle">KNN-Based KNN Prediction | Pima Dataset</p>
+                <p class="subtitle">Quick, interpretable KNN predictions on the Pima dataset — built for clarity.</p>
             </div>
-            <div class="center" style="gap:12px">
-                <div class="palette" title="Theme colors" style="display:flex;gap:6px;align-items:center">
-                    <div style="width:18px;height:18px;border-radius:4px;background:#ff6b6b;border:1px solid rgba(0,0,0,0.06)"></div>
-                    <div style="width:18px;height:18px;border-radius:4px;background:#ffd166;border:1px solid rgba(0,0,0,0.06)"></div>
-                    <div style="width:18px;height:18px;border-radius:4px;background:#6bd6ff;border:1px solid rgba(0,0,0,0.06)"></div>
-                    <div style="width:18px;height:18px;border-radius:4px;background:#b794f4;border:1px solid rgba(0,0,0,0.06)"></div>
-                </div>
-            </div>
-        </div>
-
-        <form action="/predict" method="POST">
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Pregnancies</label>
-                    <input type="number" name="pregnancies" placeholder="e.g. 2" required min="0">
-                </div>
-                <div class="form-group">
-                    <label>Glucose Level</label>
-                    <input type="number" name="glucose" placeholder="e.g. 120" required min="0">
-                </div>
-                <div class="form-group">
-                    <label>Blood Pressure</label>
-                    <input type="number" name="bloodpressure" placeholder="e.g. 70" required min="0">
-                </div>
-                <div class="form-group">
-                    <label>Skin Thickness</label>
-                    <input type="number" name="skinthickness" placeholder="e.g. 20" required min="0">
-                </div>
-                <div class="form-group">
-                    <label>Insulin</label>
-                    <input type="number" name="insulin" placeholder="e.g. 85" required min="0">
-                </div>
-                <div class="form-group">
-                    <label>BMI</label>
-                    <input type="number" step="0.1" name="bmi" placeholder="e.g. 28.5" required min="0">
-                </div>
-                <div class="form-group">
-                    <label>Diabetes Pedigree Function</label>
-                    <input type="number" step="0.001" name="dpf" placeholder="e.g. 0.467" required min="0">
-                </div>
-                <div class="form-group">
-                    <label>Age</label>
-                    <input type="number" name="age" placeholder="e.g. 33" required min="1">
+            <div class="hero-cta">
+                <div class="palette" title="Theme colors">
+                    <span class="dot c1"></span>
+                    <span class="dot c2"></span>
+                    <span class="dot c3"></span>
+                    <span class="dot c4"></span>
                 </div>
             </div>
+        </header>
 
-            <button type="submit">🔍 Predict</button>
-        </form>
+        <main class="main-grid">
+            <section class="form-card">
+                <h2>Patient Data</h2>
+                <form action="/predict" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Pregnancies</label>
+                            <input type="number" name="pregnancies" placeholder="e.g. 2" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Glucose Level</label>
+                            <input type="number" name="glucose" placeholder="e.g. 120" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Blood Pressure</label>
+                            <input type="number" name="bloodpressure" placeholder="e.g. 70" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Skin Thickness</label>
+                            <input type="number" name="skinthickness" placeholder="e.g. 20" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Insulin</label>
+                            <input type="number" name="insulin" placeholder="e.g. 85" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>BMI</label>
+                            <input type="number" step="0.1" name="bmi" placeholder="e.g. 28.5" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Diabetes Pedigree Function</label>
+                            <input type="number" step="0.001" name="dpf" placeholder="e.g. 0.467" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="number" name="age" placeholder="e.g. 33" required min="1">
+                        </div>
+                    </div>
 
-        {% if prediction %}
-        <div class="result {{ color }}">
-            <h2>Prediction Result</h2>
-            <p class="pred-text">{{ prediction }}</p>
-        </div>
-        {% endif %}
+                    <button type="submit">🔍 Predict</button>
+                </form>
 
-        <div class="charts">
-            <h2>📊 Model Evaluation</h2>
-            <div class="chart-row">
-                <div>
-                    <p>Confusion Matrix</p>
-                    <img src="{{ url_for('static', filename='confusion_matrix.png') }}" alt="Confusion Matrix">
+                {% if prediction %}
+                <div class="result {{ color }}">
+                    <h3>Prediction</h3>
+                    <p class="pred-text">{{ prediction }}</p>
                 </div>
-                <div>
-                    <p>K Value vs Accuracy</p>
-                    <img src="{{ url_for('static', filename='k_accuracy.png') }}" alt="K Accuracy">
+                {% endif %}
+            </section>
+
+            <aside class="charts-card">
+                <h2>📊 Model Evaluation</h2>
+                <div class="chart-stack">
+                    <figure class="chart-item">
+                        <figcaption>Confusion Matrix</figcaption>
+                        <img src="{{ url_for('static', filename='confusion_matrix.png') }}" alt="Confusion Matrix">
+                    </figure>
+
+                    <figure class="chart-item">
+                        <figcaption>K Value vs Accuracy</figcaption>
+                        <img src="{{ url_for('static', filename='k_accuracy.png') }}" alt="K Accuracy">
+                    </figure>
                 </div>
-            </div>
-        </div>
+            </aside>
+        </main>
+
+        <footer class="foot">Designed with ♥ — try different inputs to explore model behavior.</footer>
+
     </div>
 </body>
 </html>
